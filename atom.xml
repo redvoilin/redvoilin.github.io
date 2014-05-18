@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[less code]]></title>
+  <link href="http://redvoilin.github.io/atom.xml" rel="self"/>
+  <link href="http://redvoilin.github.io/"/>
+  <updated>2014-05-18T22:50:15+08:00</updated>
+  <id>http://redvoilin.github.io/</id>
+  <author>
+    <name><![CDATA[CH]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby惯用法]]></title>
+    <link href="http://redvoilin.github.io/blog/2014/05/17/first-blog/"/>
+    <updated>2014-05-17T23:06:38+08:00</updated>
+    <id>http://redvoilin.github.io/blog/2014/05/17/first-blog</id>
+    <content type="html"><![CDATA[<p>本篇集中写了一些ruby中惯用的方法</p>
+
+<p>1、拟态方法</p>
+
+<p>puts “hello world” 这是一段很简单的代码，一些刚接触ruby的人可能以为puts是ruby中的关键字，其实不然，puts是一个方法，只是我们一般使用时都会省略括号，如果把上面这段代码写全了，是这样的 puts(&ldquo;hello world&rdquo;)</p>
+
+<p>下面来看一个其它的例子，其实对象属性，也是伪装过的方法</p>
+
+<figure class='code'><figcaption><span>对象属性</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Person</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">name</span><span class="o">=</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@name</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">name</span>
+</span><span class='line'>    <span class="vi">@name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">p</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="nb">p</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;ch&quot;</span>
+</span><span class='line'><span class="nb">p</span><span class="o">.</span><span class="n">name</span>    <span class="c1"># =&gt; &quot;ch&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>代码p.name=&ldquo;ch&#8221;的功能和代码p.name=(&#8220;ch&rdquo;)是一样的，只是前者写起来更简洁，代码p.name也是一样的道理，省略了括号。像这个把一个方法调用伪装成另外一种东西，我们可以称之为拟态方法</p>
+]]></content>
+  </entry>
+  
+</feed>
