@@ -28,5 +28,5 @@ p = Person.new
 p.name = "ch"
 p.name    # => "ch"
 ```
-代码p.name="ch"的功能和代码p.name=("ch")是一样的，只是前者写起来更简洁，代码p.name也是一样的道理，省略了括号。像这个把一个方法调用伪装成另外一种东西，我们可以称之为拟态方法。随着深入学习ruby，可以发现类中的访问修饰符private()和protected()，类宏attr_reader()、attr_writer()和attr_accessor也都是拟态方法
+代码p.name="ch"的功能和代码p.name=("ch")是一样的，只是前者写起来更简洁，代码p.name也是一样的道理，省略了括号。像这个把一个方法调用伪装成另外一种东西，我们可以称之为拟态方法。随着深入学习ruby，可以发现类中的访问修饰符private()和protected()，类宏attr_reader()、attr_writer()和attr_accessor()也都是拟态方法
 
