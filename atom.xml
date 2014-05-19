@@ -4,7 +4,7 @@
   <title><![CDATA[less code]]></title>
   <link href="http://redvoilin.github.io/atom.xml" rel="self"/>
   <link href="http://redvoilin.github.io/"/>
-  <updated>2014-05-18T22:50:15+08:00</updated>
+  <updated>2014-05-18T20:01:49-07:00</updated>
   <id>http://redvoilin.github.io/</id>
   <author>
     <name><![CDATA[CH]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Ruby惯用法]]></title>
     <link href="http://redvoilin.github.io/blog/2014/05/17/first-blog/"/>
-    <updated>2014-05-17T23:06:38+08:00</updated>
+    <updated>2014-05-17T08:06:38-07:00</updated>
     <id>http://redvoilin.github.io/blog/2014/05/17/first-blog</id>
     <content type="html"><![CDATA[<p>本篇集中写了一些ruby中惯用的方法</p>
 
