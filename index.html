@@ -132,6 +132,50 @@
 
 
 <p>代码p.name=&ldquo;ch&#8221;的功能和代码p.name=(&#8220;ch&rdquo;)是一样的，只是前者写起来更简洁，代码p.name也是一样的道理，省略了括号。像这个把一个方法调用伪装成另外一种东西，我们可以称之为拟态方法。随着深入学习ruby，可以发现类中的访问修饰符private()和protected()，类宏attr_reader()、attr_writer()和attr_accessor()也都是拟态方法</p>
+
+<p>2、self yield</p>
+
+<p>当给方法传入一个块时，通过yield对块进行回调，这时候可以把自身传给这个块</p>
+
+<p>举个例子：</p>
+
+<figure class='code'><figcaption><span>长长方法调用链</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="o">].</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="o">.</span><span class="n">upcase</span><span class="o">.</span><span class="n">next</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果你从上面的代码发现了一个bug，怀疑是shift方法返回的值有问题，你不得不把上面的代码拆开调试</p>
+
+<figure class='code'><figcaption><span>一般调试</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="o">].</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">temp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种调试方法比较笨拙，如果不分割调用链，可以这样</p>
+
+<figure class='code'><figcaption><span>可以这样调试</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="o">].</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="o">.</span><span class="n">tap</span><span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="p">}</span><span class="o">.</span><span class="n">upcase</span><span class="o">.</span><span class="n">next</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>tap()方法从Ruby1.9版本开始被引入，其实实现也很简单</p>
+
+<figure class='code'><figcaption><span>tap方法的实现</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Object</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">tap</span>
+</span><span class='line'>    <span class="k">yield</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
