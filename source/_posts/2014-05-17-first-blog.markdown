@@ -3,7 +3,7 @@ layout: post
 title: "Ruby惯用法"
 date: 2014-05-17 23:06:38 +0800
 comments: true
-categories: 
+categories: [ruby]
 ---
 
 本篇集中写了一些ruby中惯用的方法
