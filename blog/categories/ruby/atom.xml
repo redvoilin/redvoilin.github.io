@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | less code]]></title>
+  <link href="http://redvoilin.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://redvoilin.github.io/"/>
+  <updated>2014-05-19T19:12:53-07:00</updated>
+  <id>http://redvoilin.github.io/</id>
+  <author>
+    <name><![CDATA[CH]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby惯用法]]></title>
+    <link href="http://redvoilin.github.io/blog/2014/05/17/first-blog/"/>
+    <updated>2014-05-17T08:06:38-07:00</updated>
+    <id>http://redvoilin.github.io/blog/2014/05/17/first-blog</id>
+    <content type="html"><![CDATA[<p>本篇集中写了一些ruby中惯用的方法</p>
+
+<p>1、拟态方法</p>
+
+<p>puts “hello world” 这是一段很简单的代码，一些刚接触ruby的人可能以为puts是ruby中的关键字，其实不然，puts是一个方法，只是我们一般使用时都会省略括号，如果把上面这段代码写全了，是这样的 puts(&ldquo;hello world&rdquo;)</p>
+
+<p>下面来看一个其它的例子，其实对象属性，也是伪装过的方法
+``` ruby 对象属性
+class Person
+  def name=(value)</p>
+
+<pre><code>@name = value
+</code></pre>
+
+<p>  end</p>
+
+<p>  def name</p>
+
+<pre><code>@name
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>p = Person.new
+p.name = &ldquo;ch&rdquo;
+p.name    # => &ldquo;ch&rdquo;
+```
+代码p.name=&ldquo;ch"的功能和代码p.name=("ch&rdquo;)是一样的，只是前者写起来更简洁，代码p.name也是一样的道理，省略了括号。像这个把一个方法调用伪装成另外一种东西，我们可以称之为拟态方法。随着深入学习ruby，可以发现类中的访问修饰符private()和protected()，类宏attr_reader()、attr_writer()和attr_accessor()也都是拟态方法</p>
+
+<p>2、self yield</p>
+
+<p>当给方法传入一个块时，通过yield对块进行回调，这时候可以把自身传给这个块</p>
+
+<p>举个例子：
+<code>ruby 长长方法调用链
+["a","b","c"].push("d").shift.upcase.next
+</code>
+如果你从上面的代码发现了一个bug，怀疑是shift方法返回的值有问题，你不得不把上面的代码拆开调试
+<code>ruby 一般调试
+temp = ["a","b","c"].push("d").shift
+puts temp
+</code>
+这种调试方法比较笨拙，如果不分割调用链，可以这样
+<code>ruby 可以这样调试
+["a","b","c"].push("d").shift.tap{|x| puts x}.upcase.next
+</code>
+tap()方法从Ruby1.9版本开始被引入，其实实现也很简单
+``` ruby tap方法的实现
+class Object
+  def tap</p>
+
+<pre><code>yield self
+self
+</code></pre>
+
+<p>  end
+end
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
